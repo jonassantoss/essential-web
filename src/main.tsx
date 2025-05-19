@@ -5,16 +5,14 @@ import ReactDOM from "react-dom/client";
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
 
-// Not Found component
-import { notFoundRoute } from "./NotFound.tsx";
-
+import NotFound from "./NotFound.tsx";
 import reportWebVitals from "./reportWebVitals.ts";
 import "./styles.css";
 
 // Create a new router instance
 const router = createRouter({
   routeTree,
-  notFoundRoute,
+  defaultNotFoundComponent: NotFound,
   context: {},
   defaultPreload: "intent",
   scrollRestoration: true,

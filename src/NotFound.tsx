@@ -1,13 +1,6 @@
 import logo from "@/assets/essencial-logo.webp";
-import { NotFoundRoute } from "@tanstack/react-router";
-import { Route as rootRoute } from "./routes/__root";
 
-export const notFoundRoute = new NotFoundRoute({
-  getParentRoute: () => rootRoute,
-  component: () => <NotFound />,
-});
-
-function NotFound() {
+export default function NotFound() {
   return (
     <div className="w-screen h-screen flex justify-center items-center gap-14">
       <img src={logo} alt="" />
