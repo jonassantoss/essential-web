@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import useAuth from "@/hooks/useAuth";
 import { loginSchema } from "@/validation/schemas";
 import { useForm } from "@tanstack/react-form";
 import { createFileRoute } from "@tanstack/react-router";
@@ -8,6 +9,7 @@ export const Route = createFileRoute("/(public)/login")({
 });
 
 function LoginPage() {
+  const { login } = useAuth();
   const form = useForm({
     defaultValues: {
       email: "",
@@ -15,16 +17,12 @@ function LoginPage() {
     },
     onSubmit: async ({ value }) => {
       const { email, password } = value;
-      handleSubmit(email, password);
+      login(email, password);
     },
     validators: {
       onChange: loginSchema,
     },
   });
-
-  const handleSubmit = (email: string, password: string) => {
-    console.log(email, password);
-  };
 
   return (
     <div className="w-screen h-screen flex flex-col justify-center items-center space-y-8">
@@ -103,9 +101,7 @@ function LoginPage() {
               </div>
             )}
           </form.Field>
-          <form.Subscribe>
-            <Button type="submit">Entrar</Button>
-          </form.Subscribe>
+          <Button type="submit">Entrar</Button>
         </form>
       </div>
     </div>
